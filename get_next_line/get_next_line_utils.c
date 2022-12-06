@@ -6,13 +6,13 @@
 /*   By: albrusso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 13:13:52 by albrusso          #+#    #+#             */
-/*   Updated: 2022/11/30 15:48:32 by albrusso         ###   ########.fr       */
+/*   Updated: 2022/12/06 18:01:48 by albrusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strchr(char *str, int c)
+int	ft_strchr(const char *str, int c)
 {
 	int		i;
 
@@ -56,7 +56,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (s2)
 		while (s2[j])
 			j++;
-	buffer = (char *)malloc(i + j + 1);
+	buffer = (char *)ft_calloc(i + j + 1, 1);
 	if (buffer == NULL)
 		return (NULL);
 	j = -1;
@@ -65,7 +65,6 @@ char	*ft_strjoin(char *s1, char *s2)
 	j = -1;
 	while (s2[++j])
 		buffer[i + j] = s2[j];
-	buffer[i + j] = 0;
 	free(s1);
 	free(s2);
 	return (buffer);
@@ -80,12 +79,13 @@ char	*ft_strdup(char *str)
 
 	i = 0;
 	j = 0;
-	while (str[i] != '\n' && str[i] != '\0')
+	while (str[i] != '\n' && str[i])
 		i++;
-	i++;
+	if (str[i] == '\n')
+		i++;
 	while (str[j])
 		j++;
-	ptr = (char *)malloc(j - i + 1);
+	ptr = (char *)ft_calloc(j - i + 1, 1);
 	if (!ptr)
 		return (NULL);
 	k = 0;
@@ -95,7 +95,6 @@ char	*ft_strdup(char *str)
 		k++;
 		i++;
 	}
-	ptr[k] = '\0';
 	free (str);
 	return (ptr);
 }
