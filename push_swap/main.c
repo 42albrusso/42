@@ -6,11 +6,11 @@
 /*   By: albrusso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 17:13:23 by albrusso          #+#    #+#             */
-/*   Updated: 2022/12/09 17:57:00 by albrusso         ###   ########.fr       */
+/*   Updated: 2022/12/09 18:21:47 by albrusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
+
 #include "push_swap.h"
 
 int	ft_empty(int *n, int *v, int ac)
