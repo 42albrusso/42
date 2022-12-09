@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: albrusso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/06 14:47:03 by albrusso          #+#    #+#             */
-/*   Updated: 2022/12/06 18:02:39 by albrusso         ###   ########.fr       */
+/*   Created: 2022/12/09 12:21:59 by albrusso          #+#    #+#             */
+/*   Updated: 2022/12/09 12:32:58 by albrusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <string.h>
+#include "get_next_line_bonus.h"
 
 char	*ft_ret(char *str)
 {
@@ -65,19 +64,19 @@ char	*ft_read(int fd, char *str)
 
 char	*get_next_line(int fd)
 {
-	static char	*str;
+	static char	*str[1024];
 	char		*ret;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	str = ft_read(fd, str);
-	if (str == NULL)
+	str[fd] = ft_read(fd, str[fd]);
+	if (str[fd] == NULL)
 	{
 		ret = NULL;
-		free (str);
+		free (str[fd]);
 		return (ret);
 	}
-	ret = ft_ret(str);
-	str = ft_strdup(str);
+	ret = ft_ret(str[fd]);
+	str[fd] = ft_strdup(str[fd]);
 	return (ret);
 }
