@@ -6,32 +6,39 @@
 /*   By: albrusso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 17:13:23 by albrusso          #+#    #+#             */
-/*   Updated: 2022/12/09 18:21:47 by albrusso         ###   ########.fr       */
+/*   Updated: 2022/12/13 19:05:31 by albrusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "push_swap.h"
 
-int	ft_empty(int *n, int *v, int ac)
+int	ft_nbrcheck(int ac, char *av[])
 {
 	int	i;
 	int	j;
-	int	c;
 
 	i = 0;
 	j = 0;
 	while (i < ac)
 	{
-		while (j < ac)
+		while (av[i][j])
 		{
-			if (v[i] == n[j])
-				c++;
-			j++;
+			if (av[i][j] > '0' && av[i][j] < '9')
+				j++;
+			else if (av[i][j] == '-' || av[i][j] == '+')
+			{
+				if (j == 0)
+					j++;
+				else
+					return (0);
+			}
+			else
+				return (0);
 		}
 		i++;
 	}
-	return (c);
+	return (1);
 }
 
 int	*ft_new(int ac, char *av[], int *a)
@@ -63,7 +70,13 @@ int	main(int argc, char *argv[])
 		return (0);
 	else
 	{
+		if (ft_nbrcheck(argc, argv) == 0)
+		{
+			write(1, "Error\n", 6);
+			return (0);
+		}
 		a = ft_new(argc, argv, a);
 		b = (int *)malloc((argc - 1) * sizeof(int));
+		
 	}
 }

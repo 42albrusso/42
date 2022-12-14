@@ -6,7 +6,7 @@
 /*   By: albrusso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 12:21:59 by albrusso          #+#    #+#             */
-/*   Updated: 2022/12/09 12:32:58 by albrusso         ###   ########.fr       */
+/*   Updated: 2022/12/14 15:29:26 by albrusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ char	*ft_read(int fd, char *str)
 	{
 		s = (char *)ft_calloc(BUFFER_SIZE + 1, 1);
 		byte_read = read (fd, s, BUFFER_SIZE);
+		if (byte_read == -1)
+			return (NULL);
 		str = ft_strjoin(str, s);
 		if (byte_read == 0)
 			break ;
@@ -68,13 +70,19 @@ char	*get_next_line(int fd)
 	char		*ret;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	{
+		if (str[fd] != NULL)
+		{
+			free(str[fd]);
+			str[fd] = NULL;
+		}
 		return (NULL);
+	}
 	str[fd] = ft_read(fd, str[fd]);
 	if (str[fd] == NULL)
 	{
-		ret = NULL;
 		free (str[fd]);
-		return (ret);
+		return (NULL);
 	}
 	ret = ft_ret(str[fd]);
 	str[fd] = ft_strdup(str[fd]);

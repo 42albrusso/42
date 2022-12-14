@@ -6,7 +6,7 @@
 /*   By: albrusso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 14:47:03 by albrusso          #+#    #+#             */
-/*   Updated: 2022/12/06 18:02:39 by albrusso         ###   ########.fr       */
+/*   Updated: 2022/12/14 15:27:45 by albrusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ char	*ft_read(int fd, char *str)
 	{
 		s = (char *)ft_calloc(BUFFER_SIZE + 1, 1);
 		byte_read = read (fd, s, BUFFER_SIZE);
+		if (byte_read == -1)
+			return (NULL);
 		str = ft_strjoin(str, s);
 		if (byte_read == 0)
 			break ;
@@ -69,15 +71,39 @@ char	*get_next_line(int fd)
 	char		*ret;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	{
+		if (str != NULL)
+		{
+			free(str);
+			str = NULL;
+		}
 		return (NULL);
+	}
 	str = ft_read(fd, str);
 	if (str == NULL)
 	{
-		ret = NULL;
 		free (str);
-		return (ret);
+		return (NULL);
 	}
 	ret = ft_ret(str);
 	str = ft_strdup(str);
 	return (ret);
 }
+/*
+int main(void)
+{
+	int *s;
+	int i;
+	int fd;
+
+	fd = open("test.txt", O_RDONLY);
+	if (fd == -1)
+		return (0);
+	s = get_next_line(fd);
+	while (i < 5)
+	{
+		printf("s: %s\n", s);
+		i++;
+	}
+}
+*/

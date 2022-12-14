@@ -6,7 +6,7 @@
 /*   By: albrusso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 16:58:11 by albrusso          #+#    #+#             */
-/*   Updated: 2022/12/09 18:21:42 by albrusso         ###   ########.fr       */
+/*   Updated: 2022/12/13 19:05:29 by albrusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,7 @@
 
 void	ft_pushA(int *a, int *b)
 {
-	if (ft_empty == 0)
-		return ;
-	else
-	{
-		
-	}
+	
 }
 
 void	ft_pushB(int *b)
