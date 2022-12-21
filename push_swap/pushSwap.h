@@ -1,40 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   pushSwap.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: albrusso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 17:05:22 by albrusso          #+#    #+#             */
-/*   Updated: 2022/12/09 17:05:24 by albrusso         ###   ########.fr       */
+/*   Created: 2022/12/21 11:49:35 by albrusso          #+#    #+#             */
+/*   Updated: 2022/12/21 11:52:59 by albrusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "swap.h"
+#ifndef PUSHSWAP_H
+#define PUSHSWAP_H
 
-void	ft_swapA(int *a)
+#include "../libft/libft.h"
+
+typedef struct h_list
 {
-	int	n;
-	if (!a[0] || !a[1])
-		return ;
-	n = a[0];
-	a[0] = a[1];
-	a[1] = n;
-}
+	int			content;
+	struct h_list	*next;
+}				c_list;
 
-void	ft_swapB(int *b)
-{
-	int	n;
 
-	if (!b[0] || !b[1])
-		return ;
-	n = b[0];
-	b[0] = b[1];
-	b[1] = n;
-}
 
-void	ft_swapAB(int *a, int *b)
-{
-	ft_swapA(a);
-	ft_swapB(b);
-}
+
+
+#endif
